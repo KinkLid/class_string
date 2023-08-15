@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <cstring>
 using namespace std;
 
 class String {
@@ -8,13 +9,13 @@ class String {
 public:
 	String() = default;
 
-	explicit String(const char* const& str) : size_(strlen(str) + 1), str_(new char[size_]) {
-		strcpy(str_, str);
+	explicit String(const char* const& str) : size_(strlen(str)), str_(new char[size_ + 1]) {
+		memcpy(str_, str, size_ + 1);
 	}
 
 	//copy
-	String(const String& s) : size_(s.size_), str_(new char[size_]) {
-		strcpy(str_, s.str_);
+	String(const String& s) : size_(s.size_), str_(new char[size_ + 1]) {
+		memcpy(str_, s.str_, size_ + 1);
 	}
 	//move
 	String(String&& s) : size_(s.size_), str_(s.str_) {
@@ -27,23 +28,23 @@ public:
 
 	//хз на сколько это правильно
 	char* begin() { return str_; }
-	char* end() { return str_ + size_; }
+	char* end() { return str_ + size_ + 1; }
 
 	bool empty() { return size_; }
 
 	String& operator=(const String& s) {
 		delete[] str_;
 		size_ = s.size_;
-		str_ = new char[size_];
-		strcpy(str_, s.str_);
+		str_ = new char[size_ + 1];
+		memcpy(str_, s.str_, size_ + 1);
 		return *this;
 	}
 
 	String& operator=(const char* str) {
 		delete[] str_;
 		size_ = strlen(str);
-		str_ = new char[size_];
-		strcpy(str_, str);
+		str_ = new char[size_ + 1];
+		memcpy(str_, str, size_ + 1);
 		return *this;
 	}
 
@@ -57,8 +58,8 @@ public:
 	}
 
 	String& operator+=(const String& s) {
-		char* ss = new char[size_ + s.size_];
-		strcpy(ss + size_, s.str_);
+		char* ss = new char[size_ + s.size_ + 1];
+		memcpy(ss + size_, s.str_, size_ + 1);
 		delete[] str_;
 		size_ = size_ + s.size_;
 		str_ = ss;
@@ -76,7 +77,7 @@ public:
 		s.size_ = size_ * a;
 		s.str_ = new char[s.size_];
 		for (int i = 0; i < a; ++i) {
-			strcpy(s.str_ + 1 * i, str_);
+			memcpy(s.str_ + 1 * i, str_, size_);
 		}
 		return s;
 	}
@@ -85,7 +86,8 @@ public:
 		if (i >= 0 && i < size_)
 			return str_[i];
 		std::cout << "daleko ti polez, drug";
-		return;
+		char a = 0;
+		return a;
 	}
 
 

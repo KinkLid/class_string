@@ -1,5 +1,6 @@
 #include <iostream>
 #include "String.h"
+#include "cin_cout.h"
 
 int main()
 {

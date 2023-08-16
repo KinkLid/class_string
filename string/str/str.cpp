@@ -1,7 +1,19 @@
-﻿#include <iostream>
+#include <iostream>
 #include "String.h"
+
 int main()
 {
     String s;
-    std::cout << "Hello World!\n";
+    s = "AHAHAHHA";
+    String s1("aboba");
+    String s2{ "abbudabi" };
+    for (auto x : s) {
+        std::cout << x;
+    }
+    for (auto x : s1) {
+        std::cout << x;
+    }
+    for (auto x : s2) {
+        std::cout << x;
+    }
 }

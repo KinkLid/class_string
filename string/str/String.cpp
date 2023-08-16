@@ -93,16 +93,14 @@
 	}
 
 	void String::push_back(const char* c) {
-		if (strlen(c) + size_ >= cap_) {
+		if (strlen(c) + size_ >= cap_) 
 			cap_ *= 2;
-			char* str = new char[cap_];
-			memcpy(str, str_, size_);
-			memcpy(str + size_ + 1, c, strlen(c));
-			delete[] str_;
-			str_ = str;
-			size_ += strlen(c);
-		}
-
+		char* str = new char[cap_];
+		memcpy(str, str_, size_);
+		memcpy(str + size_, c, strlen(c));
+		delete[] str_;
+		str_ = str;
+		size_ += strlen(c);
 	}
 
 

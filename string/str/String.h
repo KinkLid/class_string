@@ -33,6 +33,7 @@ public:
 	char& operator[](size_t) const;
 
 	void push_back(const char*);
+	String sub(size_t, size_t);
 
 
 	~String();

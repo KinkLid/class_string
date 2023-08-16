@@ -103,6 +103,14 @@
 		size_ += strlen(c);
 	}
 
+	String String::sub(size_t begin, size_t end) {
+		String s;
+		s.size_ = end - begin + 1;
+		s.str_ = new char[s.size_];
+		memcpy(s.str_, str_ + begin - 1, s.size_);
+		return s;
+	}
+
 
 	String::~String() {
 		delete[] str_;

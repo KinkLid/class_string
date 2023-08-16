@@ -93,7 +93,7 @@
 	}
 
 	void String::push_back(const char* c) {
-		if (strlen(c) + size_ >= cap_) 
+		while(strlen(c) + size_ >= cap_) 
 			cap_ *= 2;
 		char* str = new char[cap_];
 		memcpy(str, str_, size_);

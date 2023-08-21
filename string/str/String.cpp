@@ -93,15 +93,35 @@
 	}
 
 	void String::push_back(const char* c) {
-		while(strlen(c) + size_ >= cap_) 
+	if(strlen(c) + size_ >= cap_)
+		while (strlen(c) + size_ >= cap_) {
 			cap_ *= 2;
+			char* str = new char[cap_];
+			memcpy(str, str_, size_);
+			memcpy(str + size_, c, strlen(c));
+			delete[] str_;
+			str_ = str;
+		}
+	else {
+		memcpy(str_ + size_, c, strlen(c));
+	}
+	size_ += strlen(c);
+}
+
+void String::push_back(char c) {
+	if (size_ >= cap_ - 1) {
+		cap_ *= 2;
 		char* str = new char[cap_];
 		memcpy(str, str_, size_);
-		memcpy(str + size_, c, strlen(c));
+		str[size_] = c;
 		delete[] str_;
 		str_ = str;
-		size_ += strlen(c);
 	}
+	else {
+		str_[size_] = c;
+	}
+	size_ += 1;
+}
 
 	String String::sub(size_t begin, size_t end) {
 		String s;

@@ -4,7 +4,7 @@
 
 class String {
 	size_t size_ = 0;
-	size_t cap_ = 1; // capasity
+	size_t capacity_ = 1; // capasity
 	char* str_ = nullptr;
 	
 public:
@@ -14,41 +14,35 @@ public:
 	explicit String(const char* const&);
 	String(const String&);
 	String(String&&);
+	String(std::string&);
 
 	size_t size() const;
-	size_t size();
+	size_t cap();
 
 	//ne fact chto pravilno
 	char* begin();
 	char* end();
 	bool empty();
 
-	String& operator=(const String&);
+	char& operator[](size_t) const;
+	String& operator+=(const String&);
+	String operator*=(int a);
+
+	void swap(String&);
+
+	String& operator=(String);
 	String& operator=(const char*);
 	String& operator=(String&&);
-	String& operator+=(const String&);
-	String operator+(const String&);
-	String operator*(int);
-	char& operator[](size_t) const;
+	friend String operator+(String, const String&);
+	friend String operator*(String, int);
 
 	void push_back(const char*);
 	void push_back(char);
 	String sub(size_t, size_t);
+	size_t find(const char* c);
 
 
 	~String();
-	//friend std::istream& operator>>(std::istream& in, String& s);
+	friend std::istream& operator>>(std::istream&, String&);
 };
-/*
-std::ostream& operator<<(std::ostream& os, const String& s) {
-	for (size_t i = 0; i < s.size(); ++i) {
-		os << s[i];
-	}
-	return os;
-}
 
-//hz rabotaet li
-std::istream& operator>>(std::istream& in, String& s) {
-	in >> s;
-	return in;
-}*/

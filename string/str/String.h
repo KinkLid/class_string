@@ -1,7 +1,6 @@
 #pragma once
 #include <iostream>
 #include <cstring>
-using namespace std;
 
 class String {
 	size_t size_ = 0;
@@ -38,10 +37,10 @@ public:
 
 
 	~String();
-	//friend istream& operator>>(istream& in, String& s);
+	//friend std::istream& operator>>(std::istream& in, String& s);
 };
 /*
-ostream& operator<<(ostream& os, const String& s) {
+std::ostream& operator<<(std::ostream& os, const String& s) {
 	for (size_t i = 0; i < s.size(); ++i) {
 		os << s[i];
 	}
@@ -49,7 +48,7 @@ ostream& operator<<(ostream& os, const String& s) {
 }
 
 //hz rabotaet li
-istream& operator>>(istream& in, String& s) {
+std::istream& operator>>(std::istream& in, String& s) {
 	in >> s;
 	return in;
 }*/

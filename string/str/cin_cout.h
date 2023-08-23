@@ -1,7 +1,7 @@
 #pragma once
 #include "String.h"
 
-ostream& operator<<(ostream& os, const String& s) {
+std::ostream& operator<<(std::ostream& os, const String& s) {
 	for (size_t i = 0; i < s.size(); ++i) {
 		os << s[i];
 	}
@@ -9,7 +9,7 @@ ostream& operator<<(ostream& os, const String& s) {
 }
 
 //ne rabotaet
-istream& operator>>(istream& in, const char* c) {
+std::istream& operator>>(std::istream& in, const char* c) {
 	in >> c;
 	String s(c);
 	return in;

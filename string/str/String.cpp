@@ -107,15 +107,16 @@ String operator*(String s, int a) {
 
 
 	void String::push_back(const char* c) {
-		if(strlen(c) + size_ >= capacity_)
+		if (strlen(c) + size_ >= capacity_) {
 			while (strlen(c) + size_ >= capacity_) {
 				capacity_ *= 2;
-				char* str = new char[capacity_];
-				memcpy(str, str_, size_);
-				memcpy(str + size_, c, strlen(c));
-				delete[] str_;
-				str_ = str;
 			}
+			char* str = new char[capacity_];
+			memcpy(str, str_, size_);
+			memcpy(str + size_, c, strlen(c));
+			delete[] str_;
+			str_ = str;
+		}
 		else {
 			memcpy(str_ + size_, c, strlen(c));
 		}
